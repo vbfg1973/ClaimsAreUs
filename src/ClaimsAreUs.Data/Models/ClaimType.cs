@@ -21,5 +21,14 @@ namespace ClaimsAreUs.Data.Models
         /// </summary>
         [StringLength(20)]
         public string Name { get; set; } = null!;
+
+        #region Needed but not actually described in spec/requirements so deliberately missing out
+
+        // /// <summary>
+        // ///     Claims navigation property
+        // /// </summary>
+        // public List<Claim> Claims { get; set; } = new();
+
+        #endregion
     }
 }

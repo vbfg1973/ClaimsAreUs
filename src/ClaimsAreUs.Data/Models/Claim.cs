@@ -19,6 +19,11 @@ namespace ClaimsAreUs.Data.Models
         public int CompanyId { get; set; }
 
         /// <summary>
+        ///     Company navigation property
+        /// </summary>
+        public Company Company { get; set; } = null!;
+
+        /// <summary>
         ///     Date claim is made
         /// </summary>
         public DateTime ClaimDate { get; set; }
@@ -38,5 +43,24 @@ namespace ClaimsAreUs.Data.Models
         ///     The amount claimed
         /// </summary>
         public decimal IncurredLoss { get; set; }
+
+        /// <summary>
+        ///     Claim now closed?
+        /// </summary>
+        public bool Closed { get; set; }
+
+        #region Needed but not actually described in spec/requirements so deliberately missing out
+
+        // /// <summary>
+        // ///     Foreign key to ClaimType table
+        // /// </summary>
+        // public int ClaimTypeId { get; set; }
+        //
+        // /// <summary>
+        // ///     ClaimType navigation property
+        // /// </summary>
+        // public ClaimType ClaimType { get; set; } = null!;
+
+        #endregion
     }
 }

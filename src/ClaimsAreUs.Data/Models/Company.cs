@@ -29,13 +29,13 @@ namespace ClaimsAreUs.Data.Models
         ///     Second address line. Desired but not required.
         /// </summary>
         [StringLength(100)]
-        public string Address2 { get; set; } = null!;
+        public string? Address2 { get; set; }
 
         /// <summary>
         ///     Third address line. Desired but not required.
         /// </summary>
         [StringLength(100)]
-        public string Address3 { get; set; } = null!;
+        public string? Address3 { get; set; }
 
         /// <summary>
         ///     Postal code.
@@ -58,5 +58,10 @@ namespace ClaimsAreUs.Data.Models
         ///     Date the company's policy ends
         /// </summary>
         public DateTime InsuranceEndDate { get; set; }
+
+        /// <summary>
+        ///     Navigation property to claims for this company
+        /// </summary>
+        public List<Claim> Claims { get; set; } = new();
     }
 }
