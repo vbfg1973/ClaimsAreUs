@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByComapnyId
+namespace ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByCompanyId
 {
     /// <summary>
     ///     Handler for Claims by Company ID
@@ -43,14 +43,14 @@ namespace ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByComapnyId
         {
             _logger.LogDebug("{Message} {CorrelationId}", LogFmt.Message($"Attempting to get list of claims for company identified by {request.CompanyId}"), LogFmt.CorrelationId(request));
 
-            if (!_context.Companies.Any(company => company.Id == request.CompanyId))
-                throw new ResourceNotFoundException(ExceptionMessages.CompanyDoesNotExist);
-            
             var queryable = _context.Claims.Where(claim => claim.CompanyId == request.CompanyId);
+            
+            if (!queryable.Any())
+                throw new ResourceNotFoundException(ExceptionMessages.CompanyDoesNotExist);
 
             var results = await _mapper.ProjectTo<ClaimBasicResponseDto>(queryable).ToListAsync(cancellationToken: cancellationToken);
             
-            _logger.LogDebug("{Message} {CorrelationId}", LogFmt.Message($"Attempting to get list of claims for company identified by {request.CompanyId}"), LogFmt.CorrelationId(request));
+            _logger.LogDebug("{Message} {CorrelationId}", LogFmt.Message($"Retrieved list of claims for company identified by {request.CompanyId}"), LogFmt.CorrelationId(request));
 
             return results;
         }

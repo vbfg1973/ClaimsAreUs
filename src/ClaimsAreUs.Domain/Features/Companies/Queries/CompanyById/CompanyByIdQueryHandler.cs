@@ -47,20 +47,21 @@ namespace ClaimsAreUs.Domain.Features.Companies.Queries.CompanyById
             _logger.LogDebug("{Message} {CorrelationId}",
                 LogFmt.Message($"Attempting to get company identified by {request.CompanyId}"),
                 LogFmt.CorrelationId(request));
+
+            var queryable = _context.Companies.Where(x => x.Id == request.CompanyId); 
             
-            if (!_context.Companies.Any(x => x.Id == request.CompanyId))
+            if (!queryable.Any())
             {
                 throw new ResourceNotFoundException(ExceptionMessages.CompanyDoesNotExist);
             }
 
-            var company = await _context.Companies.FirstAsync(x => x.Id == request.CompanyId,
-                cancellationToken: cancellationToken);
+            var responseDto = await _mapper.ProjectTo<CompanyBasicResponseDto>(queryable).FirstAsync(cancellationToken: cancellationToken);
 
             _logger.LogDebug("{Message} {CorrelationId}",
                 LogFmt.Message($"Retrieved company identified by {request.CompanyId}"), 
                 LogFmt.CorrelationId(request));
 
-            return _mapper.Map<Company, CompanyBasicResponseDto>(company);
+            return responseDto;
         }
     }
 }

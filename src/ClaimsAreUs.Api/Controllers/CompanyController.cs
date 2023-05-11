@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ClaimsAreUs.Api.Extensions;
-using ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByComapnyId;
+using ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByCompanyId;
 using ClaimsAreUs.Domain.Features.Companies.Queries.CompanyById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
