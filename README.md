@@ -81,4 +81,12 @@ On a docker capable machine, from the base directory of the repository:
 docker-compose up
 ```
 
-This will download all necessary images, build the project in its own container and run all tests defined within the solution
+This will download all necessary images, build the project in its own container and run all tests defined within the solution.
+
+The database will be seeded with three companies (id 1, 2 and 3) the first two of which each have a number of claims.
+
+Swagger is available at: http://localhost:51770/swagger/index.html
+
+Each of the routes requested in the above requirements has been implemented.
+
+Logging occurs to console, but is also available in SEQ here: http://localhost/#/events. Structured logging has been implemented via Serilog. 
