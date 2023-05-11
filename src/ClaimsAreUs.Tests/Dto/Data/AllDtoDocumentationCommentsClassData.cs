@@ -22,7 +22,7 @@ namespace ClaimsAreUs.Tests.Dto.Data
             var types = _assembly
                 .GetExportedTypes();
 
-            // Limit to those ending with Dtp
+            // Limit to those ending with Dto
             foreach (var type in types.Where(x => x.Name.EndsWith("Dto", StringComparison.InvariantCultureIgnoreCase)))
                 yield return new object[]
                 {

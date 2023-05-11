@@ -1,7 +1,10 @@
 using ClaimsAreUs.Api.Extensions;
 using ClaimsAreUs.Api.Support;
 using ClaimsAreUs.Data;
+using ClaimsAreUs.Domain.Features.Companies.Commands.ClaimUpdate;
 using ClaimsAreUs.Domain.Support;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,7 @@ builder.ConfigureLogging();
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddValidatorsFromAssemblyContaining<DomainAssemblyReference>();
 builder.Services.AddSwaggerAndConfig();
 builder.Services.AddVersioning();
 builder.Services.AddDatabase(appSettings);

@@ -7,6 +7,8 @@ namespace ClaimsAreUs.Tests.Controllers
     {
         /// <summary>
         ///     Tests controller methods decorated with HTTP Verb attributes for XML Documentation Comments
+        ///     typeName and methodName are both unused in the test, but by being present and supplied by the ClassData
+        ///     object they provide context to the test output
         /// </summary>
         /// <param name="typeName"></param>
         /// <param name="methodName"></param>

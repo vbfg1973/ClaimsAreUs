@@ -11,7 +11,7 @@ namespace ClaimsAreUs.Api.Extensions
         /// <returns></returns>
         public static string GetEnvironmentName()
         {
-            var environmentName = Environment.GetEnvironmentVariable("env") ?? "Local";
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             environmentName = environmentName.ToLower().Trim();
 
             return environmentName switch
