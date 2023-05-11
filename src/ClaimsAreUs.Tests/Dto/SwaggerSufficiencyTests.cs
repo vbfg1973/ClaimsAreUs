@@ -7,6 +7,8 @@ namespace ClaimsAreUs.Tests.Dto
     {
         /// <summary>
         ///     Tests the properties of DTOs for XML Documentation Comments
+        ///     typeName and propertyName are both unused in the test, but by being present and supplied by the ClassData
+        ///     object they provide context to the test output
         /// </summary>
         /// <param name="typeName"></param>
         /// <param name="propertyName"></param>
@@ -23,6 +25,8 @@ namespace ClaimsAreUs.Tests.Dto
 
         /// <summary>
         ///     Tests the DTO objects themselves for XML Documentation comments
+        ///     typeName is unused in the test, but by being present and supplied by the ClassData
+        ///     object it provides context to the test output
         /// </summary>
         /// <param name="typeName"></param>
         /// <param name="xmlDocumentation"></param>
