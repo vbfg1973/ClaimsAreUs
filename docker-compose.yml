@@ -50,3 +50,4 @@ services:
 
 volumes:
   CHRISRUSSELL_DB_VOL:
+  CHRISRUSSELL_SEQ_VOL:
