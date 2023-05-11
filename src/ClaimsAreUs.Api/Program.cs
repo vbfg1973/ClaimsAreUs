@@ -1,5 +1,8 @@
 using ClaimsAreUs.Api.Extensions;
+using ClaimsAreUs.Api.Support;
 using ClaimsAreUs.Data;
+using ClaimsAreUs.Domain.Support;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,9 @@ builder.Services.AddSwaggerAndConfig();
 builder.Services.AddVersioning();
 builder.Services.AddDatabase(appSettings);
 
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(DomainAssemblyReference.Assembly));
+builder.Services.AddAutoMapper(DomainAssemblyReference.Assembly, ApiAssemblyReference.Assembly);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +29,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MigrateDatabase<ClaimsAreUsContext>();
+app.UseCorrelationId();
+app.UseCustomExceptionHandler();
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimsAreUs.Api.Controllers
 {
@@ -9,13 +8,18 @@ namespace ClaimsAreUs.Api.Controllers
     /// </summary>
     public class CompanyController : BaseV1ApiController
     {
+        private readonly ILogger<CompanyController> _logger;
+
         /// <summary>
         ///     ctor
         /// </summary>
         /// <param name="mediator"></param>
         /// <param name="mapper"></param>
-        public CompanyController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
+        /// <param name="logger"></param>
+        public CompanyController(IMediator mediator, IMapper mapper, ILogger<CompanyController> logger) : base(mediator,
+            mapper)
         {
+            _logger = logger;
         }
     }
 }
