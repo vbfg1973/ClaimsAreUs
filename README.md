@@ -90,3 +90,9 @@ Swagger is available at: http://localhost:51770/swagger/index.html
 Each of the routes requested in the above requirements has been implemented.
 
 Logging occurs to console, but is also available in SEQ here: http://localhost/#/events. Structured logging has been implemented via Serilog. 
+
+# Guide to reading
+
+The most pertinent code can be found in the single controller, ClaimsAreUs.Api.Contollers.CompanyController.
+
+This sends messages and receives responses through Mediatr. The messages and their handlers are all defined under ClaimsAreUs.Domain.Features.Companies. They are divided into groups by Commands (where the result is a state change) and Queries (where data is retrieved but no state is changed). Each of these is further subdivided into features which map to each of the routes requested.
