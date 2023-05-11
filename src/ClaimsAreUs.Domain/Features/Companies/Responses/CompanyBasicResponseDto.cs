@@ -3,7 +3,7 @@
     /// <summary>
     ///     Basic company details
     /// </summary>
-    public class CompanyBasicDto
+    public class CompanyBasicResponseDto
     {
         /// <summary>
         ///     Company unique identifier

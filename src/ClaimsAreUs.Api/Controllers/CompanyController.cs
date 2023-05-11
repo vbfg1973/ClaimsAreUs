@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ClaimsAreUs.Api.Extensions;
+using ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByComapnyId;
 using ClaimsAreUs.Domain.Features.Companies.Queries.CompanyById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,15 +29,29 @@ namespace ClaimsAreUs.Api.Controllers
         /// <summary>
         ///     Get a company identified by its id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="companyId"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetCompany(int id, CancellationToken cancellationToken)
+        [HttpGet("{companyId:int}")]
+        public async Task<IActionResult> GetCompany(int companyId, CancellationToken cancellationToken)
         {
-            var companyByIdQuery = new CompanyByIdQuery { CompanyId = id, CorrelationId = Request.GetCorrelationId() };
+            var companyByIdQuery = new CompanyByIdQuery { CompanyId = companyId, CorrelationId = Request.GetCorrelationId() };
 
             return Ok(await Mediator.Send(companyByIdQuery, cancellationToken));
+        }
+        
+        /// <summary>
+        ///     Get list of claims for company identified by its id
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpGet("{companyId:int}/claims")]
+        public async Task<IActionResult> GetCompanyClaims(int companyId, CancellationToken cancellationToken)
+        {
+            var claimsByCompanyIdQuery = new ClaimsByCompanyIdQuery() { CompanyId = companyId, CorrelationId = Request.GetCorrelationId() };
+
+            return Ok(await Mediator.Send(claimsByCompanyIdQuery, cancellationToken));
         }
     }
 }
