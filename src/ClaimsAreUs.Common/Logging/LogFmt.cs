@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using ClaimsAreUs.Common.Abstract;
 
 namespace ClaimsAreUs.Common.Logging
 {
@@ -29,7 +30,7 @@ namespace ClaimsAreUs.Common.Logging
         {
             return $"{ElapsedTag}={stopwatch.Elapsed}";
         }
-        
+
         public static string CorrelationId(string correlationId)
         {
             return $"{CorrelationIdTag}={correlationId}";
@@ -38,6 +39,11 @@ namespace ClaimsAreUs.Common.Logging
         public static string CorrelationId(Guid correlationId)
         {
             return $"{CorrelationIdTag}={correlationId.ToString()}";
+        }
+
+        public static string CorrelationId(ITrackableRequest request)
+        {
+            return $"{CorrelationIdTag}={request.CorrelationId}";
         }
     }
 }

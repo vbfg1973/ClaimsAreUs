@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using ClaimsAreUs.Api.Extensions;
+using ClaimsAreUs.Domain.Features.Companies.Queries.CompanyById;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimsAreUs.Api.Controllers
 {
@@ -20,6 +23,20 @@ namespace ClaimsAreUs.Api.Controllers
             mapper)
         {
             _logger = logger;
+        }
+
+        /// <summary>
+        ///     Get a company identified by its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetCompany(int id, CancellationToken cancellationToken)
+        {
+            var companyByIdQuery = new CompanyByIdQuery { CompanyId = id, CorrelationId = Request.GetCorrelationId() };
+
+            return Ok(await Mediator.Send(companyByIdQuery, cancellationToken));
         }
     }
 }

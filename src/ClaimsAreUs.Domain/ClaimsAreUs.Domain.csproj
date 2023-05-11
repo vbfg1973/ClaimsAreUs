@@ -2,14 +2,12 @@
 
     <ItemGroup>
         <ProjectReference Include="..\ClaimsAreUs.Common\ClaimsAreUs.Common.csproj" />
+        <ProjectReference Include="..\ClaimsAreUs.Data\ClaimsAreUs.Data.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="12.0.1" />
       <PackageReference Include="MediatR" Version="12.0.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Features\Companies\" />
     </ItemGroup>
 
     <PropertyGroup>
