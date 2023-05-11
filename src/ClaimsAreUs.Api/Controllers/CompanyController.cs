@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ClaimsAreUs.Api.Extensions;
 using ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByCompanyId;
+using ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByCompanyIdAndClaimId;
 using ClaimsAreUs.Domain.Features.Companies.Queries.CompanyById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +51,21 @@ namespace ClaimsAreUs.Api.Controllers
         public async Task<IActionResult> GetCompanyClaims(int companyId, CancellationToken cancellationToken)
         {
             var claimsByCompanyIdQuery = new ClaimsByCompanyIdQuery() { CompanyId = companyId, CorrelationId = Request.GetCorrelationId() };
+
+            return Ok(await Mediator.Send(claimsByCompanyIdQuery, cancellationToken));
+        }
+
+        /// <summary>
+        ///     Get specific claim for company identified by its UCR
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="ucr"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpGet("{companyId:int}/claims/{ucr}")]
+        public async Task<IActionResult> GetSpecificCompanyClaim(int companyId, string ucr, CancellationToken cancellationToken)
+        {
+            var claimsByCompanyIdQuery = new ClaimByCompanyIdAndClaimIdQuery() { CompanyId = companyId, Ucr = ucr, CorrelationId = Request.GetCorrelationId() };
 
             return Ok(await Mediator.Send(claimsByCompanyIdQuery, cancellationToken));
         }

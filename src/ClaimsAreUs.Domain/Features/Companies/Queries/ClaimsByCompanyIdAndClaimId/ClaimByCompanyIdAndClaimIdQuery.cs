@@ -17,7 +17,7 @@ namespace ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByCompanyIdAndClai
         /// <summary>
         ///     Unique identifier for claim
         /// </summary>
-        public string ClaimId { get; set; } = null!;
+        public string Ucr { get; set; } = null!;
 
         /// <summary>
         ///     Correlation id for tracking requests

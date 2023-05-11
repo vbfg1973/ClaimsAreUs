@@ -42,16 +42,16 @@ namespace ClaimsAreUs.Domain.Features.Companies.Queries.ClaimsByCompanyIdAndClai
         public async Task<ClaimBasicResponseDto> Handle(ClaimByCompanyIdAndClaimIdQuery request,
             CancellationToken cancellationToken)
         {
-            _logger.LogDebug("{Message} {CorrelationId}", LogFmt.Message($"Attempting to get claim {request.ClaimId} for company identified by {request.CompanyId}"), LogFmt.CorrelationId(request));
+            _logger.LogDebug("{Message} {CorrelationId}", LogFmt.Message($"Attempting to get claim {request.Ucr} for company identified by {request.CompanyId}"), LogFmt.CorrelationId(request));
 
-            var queryable = _context.Claims.Where(claim => claim.UCR == request.ClaimId && claim.CompanyId == request.CompanyId);
+            var queryable = _context.Claims.Where(claim => claim.UCR == request.Ucr && claim.CompanyId == request.CompanyId);
             
             if (!queryable.Any())
                 throw new ResourceNotFoundException(ExceptionMessages.ClaimDoesNotExist);
             
             var responseDto = await _mapper.ProjectTo<ClaimBasicResponseDto>(queryable).FirstAsync(cancellationToken: cancellationToken);
             
-            _logger.LogDebug("{Message} {CorrelationId}", LogFmt.Message($"Retrieved claim {request.ClaimId} for company identified by {request.CompanyId}"), LogFmt.CorrelationId(request));
+            _logger.LogDebug("{Message} {CorrelationId}", LogFmt.Message($"Retrieved claim {request.Ucr} for company identified by {request.CompanyId}"), LogFmt.CorrelationId(request));
 
             return responseDto;
         }
