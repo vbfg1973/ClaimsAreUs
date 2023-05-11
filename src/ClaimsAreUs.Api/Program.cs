@@ -9,9 +9,8 @@ builder.ConfigureLogging();
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddSwaggerAndConfig();
+builder.Services.AddVersioning();
 builder.Services.AddDatabase(appSettings);
 
 var app = builder.Build();
