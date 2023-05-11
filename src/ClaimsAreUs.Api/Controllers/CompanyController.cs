@@ -106,6 +106,7 @@ namespace ClaimsAreUs.Api.Controllers
             var updateClaimCommand = Mapper.Map<UpdateClaimCommandDto, UpdateClaimCommand>(updateClaimCommandDto);
             updateClaimCommand.CompanyId = companyId;
             updateClaimCommand.Ucr = ucr;
+            updateClaimCommand.CorrelationId = Request.GetCorrelationId();
             
             return Ok(await Mediator.Send(updateClaimCommand, cancellationToken));
         }
