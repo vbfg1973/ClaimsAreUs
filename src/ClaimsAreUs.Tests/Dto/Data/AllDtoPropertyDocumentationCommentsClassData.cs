@@ -9,11 +9,11 @@ namespace ClaimsAreUs.Tests.Dto.Data
     /// <summary>
     ///     Uses reflection to return any DTO types
     /// </summary>
-    public class AllDtoPocoAndPropertiesAndDocumentationCommentsClassData : IEnumerable<object[]>
+    public class AllDtoPropertyDocumentationCommentsClassData : IEnumerable<object[]>
     {
         private readonly Assembly _assembly;
 
-        public AllDtoPocoAndPropertiesAndDocumentationCommentsClassData()
+        public AllDtoPropertyDocumentationCommentsClassData()
         {
             // Get the assembly of the following controller
             _assembly = DomainAssemblyReference.Assembly;
