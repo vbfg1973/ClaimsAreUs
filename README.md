@@ -53,6 +53,8 @@ CREATE TABLE Company
   
 # Plan
 
+- Latest version of .net (currently 7)
+  - Full controllers instead of minimal API. I'm an old man.
 - Vertical slices, with all features defined in their own directory and all supporting elements of that feature (code, DTO, validation, etc there along side each other)
 - Swagger documentation
   - Ensuring public facing controllers and DTO models have XML Documentation Comments a good candidate for meeting the testing requirement
