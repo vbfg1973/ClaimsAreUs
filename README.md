@@ -55,14 +55,23 @@ CREATE TABLE Company
 
 - Latest version of .net (currently 7)
   - Full controllers instead of minimal API. I'm an old man.
-- Vertical slices, with all features defined in their own directory and all supporting elements of that feature (code, DTO, validation, etc there along side each other)
+- Vertical slices
+  - All features defined in their own directory and all supporting elements of that feature (code, DTO, validation, etc there along side each other)
+  - Adopt a Command / Query style implemented with Mediatr. This is a nice approach for spiking vertical slices as it allows relatve ease of shifting to a true event-driven model with external message busses. It's not a perfect fit but it gets you a lot of the way there.
+  - Even so, it ensures true decoupling of caller from handler. Replacement of handlers becomes a breeze.
 - Swagger documentation
   - Ensuring public facing controllers and DTO models have XML Documentation Comments a good candidate for meeting the testing requirement
-- API version support
+  - API version support, with swagger playing ball too
 - Runs in a docker container
 - SQL Server deployed with
 - Structured logging for relative ease of machine parsing (Grafana et al, though using SEQ instead of Loki)
 - All routes exposed in a REST fashion with proper relationship between resources, HTTP verbs, etc
+
+I have a lot of this burnt into my brain and quickly available to me. Implementation will however push me over the guide time limit. However:
+
+> While this is a test exercise, the level of detail and quality should represent something that is fit for production.
+
+Say no more...
 
 # How to run
 

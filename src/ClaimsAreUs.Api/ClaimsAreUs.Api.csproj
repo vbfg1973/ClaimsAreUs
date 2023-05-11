@@ -30,4 +30,8 @@
         <ProjectReference Include="..\ClaimsAreUs.Domain\ClaimsAreUs.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
 </Project>
